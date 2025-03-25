@@ -1,6 +1,18 @@
 import { cart, removeFromCart, calculateCartQuantity, updateQuantity, } from "../scripts/cart.js";
 import { products } from "../scripts/products.js";
 import { currencyFormat } from "./Utils/money.js";
+import {hello} from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
+import dayjs from 'https://cdn.skypack.dev/dayjs@1.11.10';
+import 'https://cdn.skypack.dev/dayjs@1.11.10/locale/en'; // For locale support
+dayjs.locale('en'); // Activate English locale
+
+
+hello();
+const today = dayjs(); 
+const deliveryDate = today.add(7, 'days');
+console.log(deliveryDate.format('dddd, MMMM D'));
+
+
 
 let cartSummaryHTML = '';
 
@@ -88,7 +100,8 @@ cart.forEach((cartItem) => {
 });
 
 document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
-console.log(cartSummaryHTML);
+
+
 
 document.querySelectorAll('.js-delete-link').forEach((link) => {
   link.addEventListener('click', () => {
