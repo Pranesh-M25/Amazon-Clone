@@ -1,4 +1,4 @@
-import { cart, removeFromCart, calculateCartQuantity, updateQuantity, } from "../scripts/cart.js";
+import { cart, removeFromCart, calculateCartQuantity, updateQuantity, updateDeliveryOption } from "../scripts/cart.js";
 import { products } from "../scripts/products.js";
 import { currencyFormat } from "./Utils/money.js";
 import {hello} from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
@@ -100,13 +100,15 @@ function deliveryOptionsHTML(matchingProduct,cartItem) {
 
     const priceString = deliveryOption.priceCents === 0
     ?  'Free'
-    :  `${currencyFormat(deliveryOption.priceCents)} `;
+    :  `$${currencyFormat(deliveryOption.priceCents)} `;
 
     const isChecked = deliveryOption.id === cartItem.deliveryOptionId;
 
  html +=
     ` 
-          <div class="delivery-option">
+          <div class="delivery-option js-delivery-option"
+          data-product-id="${matchingProduct.id}"
+          data-delivery-option-id="${deliveryOption.id}">
             <input type="radio" ${isChecked ?'checked'  : ''} class="delivery-option-input" name="delivery-option-${matchingProduct.id}">
             <div>
               <div class="delivery-option-date">
@@ -192,3 +194,12 @@ document.querySelectorAll('.js-save-link').forEach((link) => {
     updateCartQuantity();
   });
 });
+
+document.querySelectorAll('.js-delivery-option')
+.forEach((element) => {
+  element.addEventListener('click', () => {
+    const {productId,deliveryOptionId} = element.dataset; /* short hand property for the code const productID = element.dataset.productId and
+      const deliveryOptionID = element.dataset.deliveryOptionId*/
+   updateDeliveryOption(productId,deliveryOptionId);
+  })
+})
