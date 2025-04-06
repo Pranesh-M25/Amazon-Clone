@@ -5,7 +5,7 @@ import { hello } from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
 import dayjs from 'https://cdn.skypack.dev/dayjs@1.11.10';
 import 'https://cdn.skypack.dev/dayjs@1.11.10/locale/en'; // For locale support
 dayjs.locale('en'); // Activate English locale
-import { deliveryOptions, getDeliveryOption } from "../../scripts/deliveryOptions.js";
+import { deliveryOptions, getDeliveryOption,calculateDeliveryDate } from "../../scripts/deliveryOptions.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
 
 
@@ -20,9 +20,7 @@ export function renderOrderSummary() {
     const deliveryOptionId = cartItem.deliveryOptionId;
     let deliveryOption = getDeliveryOption(deliveryOptionId);
 
-    const today = dayjs();
-    const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
-    const dateString = deliveryDate.format('dddd, MMMM D');
+   calculateDeliveryDate();
 
     cartSummaryHTML += `
       <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
@@ -68,9 +66,7 @@ export function renderOrderSummary() {
   function deliveryOptionsHTML(matchingProduct, cartItem) {
     let html = '';
     deliveryOptions.forEach((deliveryOption) => {
-      const today = dayjs();
-      const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
-      const dateString = deliveryDate.format('dddd, MMMM D');
+     calculateDeliveryDate();
       const priceString = deliveryOption.priceCents === 0 ? 'Free' : `$${currencyFormat(deliveryOption.priceCents)} `;
       const isChecked = deliveryOption.id === cartItem.deliveryOptionId;
 
@@ -162,4 +158,6 @@ export function renderOrderSummary() {
     });
   });
 }
+
+
 
