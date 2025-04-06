@@ -6,6 +6,7 @@ import dayjs from 'https://cdn.skypack.dev/dayjs@1.11.10';
 import 'https://cdn.skypack.dev/dayjs@1.11.10/locale/en'; // For locale support
 dayjs.locale('en'); // Activate English locale
 import { deliveryOptions, getDeliveryOption } from "../../scripts/deliveryOptions.js";
+import { renderPaymentSummary } from "./paymentSummary.js";
 
 
 
@@ -105,6 +106,8 @@ export function renderOrderSummary() {
         console.error(`Container not found for productId: ${productId}`);
       }
       updateCartQuantity();
+
+      renderPaymentSummary();
     });
   });
 
@@ -146,6 +149,7 @@ export function renderOrderSummary() {
       quantityLabel.innerHTML = newQuantity;
 
       updateCartQuantity();
+      renderPaymentSummary();
     });
   });
 
@@ -154,6 +158,7 @@ export function renderOrderSummary() {
       const { productId, deliveryOptionId } = element.dataset;
       updateDeliveryOption(productId, deliveryOptionId);
       renderOrderSummary();
+      renderPaymentSummary();
     });
   });
 }
