@@ -1,8 +1,8 @@
-export { currencyFormat };
+export { formatCurrency };
 
-function currencyFormat(priceCents) {
+function formatCurrency(priceCents) {
   return (Math.round(priceCents) / 100).toFixed(2);
 }
 
 
-export default currencyFormat;
+export default formatCurrency;
