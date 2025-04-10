@@ -1,4 +1,4 @@
-import{formatCurrency} from '../scripts/Utils/money.js';
+import{formatCurrency} from '../../scripts/Utils/money.js';
 
 //describe is an inbuit function in jasmine, used to create a suite
 describe('Test Suite: FormatCurrency', () => {
