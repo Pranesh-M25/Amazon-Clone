@@ -1,17 +1,17 @@
 class Cart {
-  cartItems;
-  localStorageKey;
+  cartItems; //it is a public property
+  #localStorageKey; //we add the # symbol to make this property a private propertry so that it could only be used inside this class
 
-  constructor(localStorageKey) { //the parameter localStorageKey can be used when calling the Cart function
-    
-    this.localStorageKey = localStorageKey;
+  constructor(localStorageKey) {
+    // the parameter localStorageKey can be used when calling the Cart function
+    this.#localStorageKey = localStorageKey;
+    this.#loadFromStorage();
+  } 
+  // constructor is like a normal method but the special thing is we do not need to call it, 
+  // whenever we generate an object the constructor will automatically run
 
-    this.loadFromStorage();
-  
-  } //constructor is like a normal method but the special thing is we do not need to call it, whenever we generate an object the constructor will automatically run
-
-  loadFromStorage() {
-    this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey));
+  #loadFromStorage() {
+    this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey));
 
     if (!this.cartItems) {
       this.cartItems = [
@@ -30,7 +30,7 @@ class Cart {
   }
 
   saveToStorage() {
-    localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems));
+    localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
   }
 
   addToCart(productId, quantity) {
@@ -107,9 +107,13 @@ class Cart {
 const cart = new Cart('cart-OOP'); // creates a new object named cart using the class
 const businessCart = new Cart('cart-business'); // creates a new object named Businesscart using the class
 
+
+
 console.log(cart);
 console.log(businessCart);
-console.log(businessCart instanceof Cart); // is an object created from a class then it is called an instance, in this case we have created an object named businessCart which is an instance to the class Cart
+console.log(businessCart instanceof Cart); 
+// is an object created from a class then it is called an instance, 
+// in this case we have created an object named businessCart which is an instance to the class Cart
 
 
 
