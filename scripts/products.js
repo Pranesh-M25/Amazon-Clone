@@ -37,6 +37,37 @@ class Product{
 
 }
 
+class Clothing extends Product{ // this line uses inheritance, that takes and uses all the properties from it's parent class (which comes after the word extends)
+  sizeChartLink; //this is a new property which is not present in parent class
+
+  
+  constructor(productDetails){
+    super(productDetails); //super() is a special method that calls the constructor of the parent class and uses all of it's functionalities
+    this.sizeChartLink = productDetails.sizeChartLink;
+  }
+}
+
+const tshirt = new Clothing( {
+  id: "83d4ca15-0f35-48f5-b7a3-1ea210004f2e",
+  image: "images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg",
+  name: "Adults Plain Cotton T-Shirt - 2 Pack",
+  rating: {
+    stars: 4.5,
+    count: 56
+  },
+  priceCents: 799,
+  keywords: [
+    "tshirts",
+    "apparel",
+    "mens"
+  ],
+  type: "clothing",
+  sizeChartLink: "images/clothing-size-chart.png"
+});
+
+console.log(tshirt);
+console.log(tshirt.getPrice());
+
 
 export const products = [
   {
