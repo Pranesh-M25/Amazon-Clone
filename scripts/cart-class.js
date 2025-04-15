@@ -104,7 +104,7 @@ class Cart {
   }
 }
 
-const cart = new Cart('cart-OOP'); // creates a new object named as cart using the class
+const cart = new Cart('cart-OOP'); // creates a new object named as cart using the class which is named as Cart
 const businessCart = new Cart('cart-business'); // creates a new object named Businesscart using the class
 
 
