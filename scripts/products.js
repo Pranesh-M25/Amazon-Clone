@@ -78,29 +78,7 @@ const tshirt = new Clothing( {
 console.log(tshirt);
 console.log(tshirt.getPrice());
 
-// const date = new Date();
-// console.log(date);
 
-// console.log(date.toLocaleTimeString());
-
-// console.log(this);
-
-// const obj2 = {
-//   a: 2,
-//   b: this.a
-// }
-
-// function logThis(){
-//   console.log(this);
-// }
-// logThis();
-// logThis.call(2*12); // .call normally calls and runs a function but here we can set the value of 'this' property (basically a parameter) to whatever we want
-
-// const obj3 = {
-//   method: () => {
-//     console.log(this);
-//   }
-// }
 
 export const products = [
   {
@@ -798,3 +776,27 @@ export const products = [
   return new Product(productDetails);
 }); // .map basically loops through the object and array and does a function whatever is declared
 
+
+// const date = new Date();
+// console.log(date);
+
+// console.log(date.toLocaleTimeString());
+
+// console.log(this);
+
+// const obj2 = {
+//   a: 2,
+//   b: this.a
+// }
+
+// function logThis(){
+//   console.log(this);
+// }
+// logThis();
+// logThis.call(2*12); // .call normally calls and runs a function but here we can set the value of 'this' property (basically a parameter) to whatever we want
+
+// const obj3 = {
+//   method: () => {
+//     console.log(this);
+//   }
+// }
