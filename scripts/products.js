@@ -35,15 +35,25 @@ class Product{
     return `$${formatCurrency(this.priceCents)}`;
   }
 
+  extraInfoHTML(){
+    return'';
+  }
+
 }
 
-class Clothing extends Product{ // this line uses inheritance, that takes and uses all the properties from it's parent class (which comes after the word extends)
+export class Clothing extends Product{ // this line uses inheritance, that takes and uses all the properties from it's parent class (which comes after the word extends)
   sizeChartLink; //this is a new property which is not present in parent class
 
   
   constructor(productDetails){
     super(productDetails); //super() is a special method that calls the constructor of the parent class and uses all of it's functionalities
     this.sizeChartLink = productDetails.sizeChartLink;
+  }
+
+  extraInfoHTML(){
+    return `
+      <a href="${this.sizeChartLink}" target="_blank">Size Chart</a>
+    `; //target = "_blank" this insists to open the link in the new tab
   }
 }
 
@@ -759,6 +769,9 @@ export const products = [
     ]
   }
 ].map((productDetails) => {
+  if(productDetails.type === 'clothing'){
+    return new Clothing(productDetails);
+  }
   return new Product(productDetails);
 }); // .map basically loops through the object and array and does a function whatever is declared
 
