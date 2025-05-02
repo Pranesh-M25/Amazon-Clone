@@ -89,7 +89,7 @@ export function loadProducts(fun) {
         return new Product(productDetails);
       }); // .map basically loops through the object and array and does a function whatever is declared
 
-     // console.log('Working');
+     console.log('Load Products');
 
       fun();
   });
