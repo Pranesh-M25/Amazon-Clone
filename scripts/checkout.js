@@ -6,6 +6,27 @@ import { loadCart } from "./cart.js";
 // import './cart-class.js'
 // import './backend-practice.js';
 
+async function loadPage() {
+
+  await loadProductsFetch();
+
+  await new Promise((resolve) => {
+    loadCart(() => {
+      resolve('value2');
+    });
+  });
+
+
+  renderOrderSummary();
+  renderCheckoutHeader();
+  renderPaymentSummary();
+
+} 
+loadPage();
+// async makes a function return a promise automatically
+// await makes the code wait for the promise to complete before continuing, while using await we do not need to use .then() and await can only be used inside an async function.
+
+/*
 Promise.all([
  loadProductsFetch(),
   new Promise((resolve) => {
@@ -15,11 +36,13 @@ Promise.all([
   })
 
 ]).then((values) => {
-  console.log(values);
-  renderOrderSummary();
+    console.log(values);
+    renderOrderSummary();
     renderCheckoutHeader();
     renderPaymentSummary();
-});
+}); 
+*/
+
 
 /*new Promise((resolve) => {
   loadProducts(() => {
